@@ -165,8 +165,7 @@ a,
 #post-list li:hover .dates,
 #title:hover {
 	text-decoration: none;
-	color: #5badf0;
-	color: #5694f1;
+	color: #1da1f3;
 }
 
 p a { color: #5694f1; }
@@ -388,7 +387,8 @@ Post List
 }
 
 #post-list a {
-	color: #333;
+	/* color: #333; */
+	color: #5badf0;
 	display: block;
 	font: bold 19px/1.7 "Helvetica Neue",helvetica,Arial,sans-serif;
 }
