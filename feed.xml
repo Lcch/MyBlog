@@ -7,6 +7,21 @@
     <atom:link href="http://yuigahame.com/blog/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>GitHub Basic</title>
+        
+        
+          <description>&lt;p&gt;This post summaries some basic important Git commands and guides you how to manager projects and codes better.&lt;/p&gt;
+
+&lt;p&gt;Not finished.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 30 Aug 2015 01:10:02 +0800</pubDate>
+        <link>http://yuigahame.com/blog/2015/GitHub-Basic/</link>
+        <guid isPermaLink="true">http://yuigahame.com/blog/2015/GitHub-Basic/</guid>
+      </item>
+    
+      <item>
         <title>Communication Between NodeJs and Python</title>
         
         
