@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Hao - EM Algorithm</title>
+  <link rel="shortcut icon" href="/blog/assets/images/favicon.ico">
+  <link rel="stylesheet" href="/blog/assets/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="My Blog" href="/blog/rss.xml">
+  <link rel="stylesheet" href="/blog/assets/css/highlight.css">
+</head>
+<body>
+
+  <nav class="main-nav">
+    
+        <a href="/blog/"> <span class="arrow">←</span> Home </a>
+    
+
+    <a href="/blog/archive.html">Archive </a>
+
+    
+        
+            <a href="/blog/about">About </a>
+        
+    
+
+    <a class="cta" href="/blog/feed.xml">Subscribe</a>
+</nav>
+
+  
+
+  <section id="wrapper" class="">
+    <article class="post">
+    <header>
+        <h1>EM Algorithm</h1>
+        <h2 class="headline">March 30, 2015</h2>
+    </header>
+    <section id="post-body">
+        <p>EM algorithm is to find maximum likelihood solutions for models having latent variables (inference incomplete data). It is a iterative algorithm, which alternate between the E step and the M step in each iteration. In the E step, or expectation step, we use current parameters to evaluate the posterior probabilities. Then we maximum the likelihood using these probabilities, which calls M step, or maximization step.</p>
+
+<!--more-->
+
+<h3 id="mixtures-of-gaussians">Mixtures of Gaussians</h3>
+<p>Here, we are going to show an example for which the EM algorithm is as an elegant and powerful method.</p>
+
+<p>Gaussian mixture distribution can be written as: \( p(x) = \sum_{k=1}^{K} \pi_k N(x|\mu_k, \Sigma_k) \) where \( z \) is a 1-of-K binary random variable in which a particular element is equal to 1 and all other elements are equal to 0. \( z \) is also a latent variable represented which gaussian distribution \( x \) get into.</p>
+
+<p>Let \( p(z_k = 1) = \pi_k, \sum_{k=1}^{K} \pi_k = 1 \). The conditional distribution of \( x \) given a particular value for \( z \) is a Gaussian \( p(x | z_k=1) = N(x|\mu_k, \Sigma_k) \). 
+Now we are able to get the joint distribution \( p(x) = \sum_{z} p(z) p(x|z) = \sum_{k=1}^{K} \pi_k N(x|\mu_k, \Sigma_k) \).</p>
+
+<p>From above, the log of the likelihood function is given by \[ ln~p(X | \pi, \mu, \Sigma) = \sum_{n=1}^{N} ln{\sum_{k=1}^{K} \pi_k N(x|\mu_k, \Sigma_k) }~~~~~~~~~(eqn~1)  \]</p>
+
+<p>For simplicity, consider a Gaussian mixture whose components have covariance matrices given by \( \Sigma_k = \sigma_k^2 I \).</p>
+
+<p>Maximizing the log likelihood function for a Gaussian mixture model turns out to be a more complex problem. We are not able to get the closed form solution of the maximum solution of the log likelihood function since there are latent variables inside the form. Now, we shall show how EM can be generalized to obtain the solution.</p>
+
+<p>Setting the derivatives of eqn 1 with respect to the means \( \mu_k \) to zero. We can obtain \( \mu_k = \frac{\sum_{n=1}^{N} \gamma(z_{nk})x_n}{\sum_{n=1}^{N} \gamma(z_{nk})} \) where \( \gamma(z_{nk}) = \frac{\pi_kN(x_n|\mu_k, \Sigma_k)}{\sum_{j} \pi_j N(x_n|\mu_j, \Sigma_j)} \).</p>
+
+<p>If we set the derivative of eqn 1 with respect to the \( \Sigma_k \) to zero. We can obtain \( \Sigma_k = \frac{\sum_{n=1}^{N} \gamma(z_{nk})(x_n-\mu_k)(x_n - \mu_k)^T}{\sum_{n=1}^{N} \gamma(z_{nk})} \).</p>
+
+<p>In the same way, we are able to obtain \( \mu_k = \frac{\sum_{n=1}^{N} \gamma(z_{nk})}{N} \).</p>
+
+<p>So in summary, we can solve Gaussian mixtures model by following steps. First, we initialize the parameters. Then iterate E step and M step until the parameters are converged. In the E step, we evaluate the probability, \( \gamma \) in this case, using the current parameters. In the M step, we re-estimate the parameters using the current probability that are calculated in the E step.</p>
+
+<h3 id="general-em">General EM</h3>
+<p>Observed variables \( X \) and latent variables \( Z \). the goal is to maximize the likelihood function \( p(X | \theta) \) with respect \( \theta \).</p>
+
+<ol>
+  <li>Initial setting \( \theta^{old} \).</li>
+  <li>E step: evaluate \( p(Z | X, \theta^{old}) \).</li>
+  <li>M step: evaluate \( \theta^{new} = argmax Q(\theta, \theta^{old}) \). and \( Q(\theta, \theta^{old}) = \sum_{Z} p(Z|X, \theta^{old})ln~p(X, Z | \theta) \).</li>
+  <li>If it is not converged, \( \theta^{old} = \theta^{new} \) and return to step 2).</li>
+</ol>
+
+<p><br /></p>
+
+<p>Note: generalized EM, or GEM, algorithm addresses the problem of an intractable M step. Instead of aiming to maximize the equation, it seeks instead to change the parameters in such a way as to increase its value. We can similarly generalize the E step of the EM algorithm by performing a partial, rather than complete, optimization.</p>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script>
+MathJax.Hub.Config({
+    "HTML-CSS": { scale: 90 }
+});
+</script>
+
+
+    </section>
+</article>
+<footer id="post-meta" class="clearfix">
+    <a href="http://twitter.com/chenhaopku">
+        <img class="avatar" src="/blog/assets/images/avatar.png">
+        <div>
+            <span class="dark">Hao</span>
+            <span>Stay awesome</span>
+        </div>
+    </a>
+
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://yuigahame.com/2015/EM-Algorithm/ - EM Algorithm by @chenhaopku"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+    </section>
+</footer>
+
+<!-- Disqus comments -->
+
+
+<!-- Archive post list -->
+
+    <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+                <a href="/blog/2015/Communication-Between-NodeJs-and-Python/">Communication Between NodeJs and Python<aside class="dates">Apr 07</aside></a>
+            </li>
+        
+            <li>
+                <a href="/blog/2015/IU---December-24/">IU-December 24<aside class="dates">Apr 07</aside></a>
+            </li>
+        
+            <li>
+                <a href="/blog/2015/EM-Algorithm/">EM Algorithm<aside class="dates">Mar 30</aside></a>
+            </li>
+        
+            <li>
+                <a href="/blog/2015/Hello-2015!/">Hello 2015!<aside class="dates">Jan 01</aside></a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/blog/assets/js/main.js"></script>
+  <script src="/blog/assets/js/highlight.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXXX-X', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
+
+
+

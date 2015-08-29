@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Hao</title>
+    <description>Stay awesome</description>
+    <link>http://yuigahame.com/blog</link>
+    <atom:link href="http://yuigahame.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Communication Between NodeJs and Python</title>
+        
+        
+          <description>&lt;p&gt;This article is going to talk about how to communicate between Node.Js and Python, in the case of you need to do some processing or computation by Python script during running a Node server.&lt;/p&gt;
+
+&lt;p&gt;In some projects, you might need to do some complex processings using other language’s library, which should be more simple and more efficient than use Node module and do the computation entirely in Javascript.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 07 Apr 2015 08:10:00 +0800</pubDate>
+        <link>http://yuigahame.com/blog/2015/Communication-Between-NodeJs-and-Python/</link>
+        <guid isPermaLink="true">http://yuigahame.com/blog/2015/Communication-Between-NodeJs-and-Python/</guid>
+      </item>
+    
+      <item>
+        <title>IU-December 24</title>
+        
+        
+          <description>&lt;div style=&quot;text-align: center&quot;&gt;
+    Her voice is simply cute and lovely. :) &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+
+    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/hG2ekffXMhs&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
+        
+        <pubDate>Tue, 07 Apr 2015 08:00:02 +0800</pubDate>
+        <link>http://yuigahame.com/blog/2015/IU---December-24/</link>
+        <guid isPermaLink="true">http://yuigahame.com/blog/2015/IU---December-24/</guid>
+      </item>
+    
+      <item>
+        <title>EM Algorithm</title>
+        
+        
+          <description>&lt;p&gt;EM algorithm is to find maximum likelihood solutions for models having latent variables (inference incomplete data). It is a iterative algorithm, which alternate between the E step and the M step in each iteration. In the E step, or expectation step, we use current parameters to evaluate the posterior probabilities. Then we maximum the likelihood using these probabilities, which calls M step, or maximization step.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 30 Mar 2015 08:00:00 +0800</pubDate>
+        <link>http://yuigahame.com/blog/2015/EM-Algorithm/</link>
+        <guid isPermaLink="true">http://yuigahame.com/blog/2015/EM-Algorithm/</guid>
+      </item>
+    
+      <item>
+        <title>Hello 2015!</title>
+        
+        
+          <description>&lt;p&gt;好像上一年的新年还是历历在目，而如今已在大洋彼岸有着16小时的时差迎接着比往日晚来的新年。第一次在异国他乡跨年，少了一份激动多了一份伤感。但是我似乎很喜欢跨年，每当跨年的时候似乎一切都变得崭新了，自己也有了勇气去改变。所以每次跨年都在最后一分钟内看着时钟默数倒计时，欢欣鼓舞地看着时钟年份的变化。&lt;/p&gt;
+
+&lt;p&gt;回顾2014，简简单单也百感交集，无论是周围的事物还是自己的心境都发了巨大的改变。想说的太多，但也不知道该说什么。想要从头开始回忆，但是上半年自己是怎么度过了，也还是想不起来。估计就是读书，看动漫，玩游戏，打打网球，偶尔出去玩。可能每一天也差不多，所以印象也不深了吧。但是还是有零碎的片段造就了小小的波澜，第一次实习面试，尝试创业，陪伴来北京的同学，师兄师姐的毕业，开始实习，世界杯，交流……突然就想出了许多片断，但是怎么串联起来也毫无头绪。&lt;/p&gt;
+
+&lt;p&gt;翻开相簿和日志，才想起来2014发生的点点滴滴。&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 01 Jan 2015 08:00:00 +0800</pubDate>
+        <link>http://yuigahame.com/blog/2015/Hello-2015!/</link>
+        <guid isPermaLink="true">http://yuigahame.com/blog/2015/Hello-2015!/</guid>
+      </item>
+    
+  </channel>
+</rss>
