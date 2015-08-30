@@ -182,6 +182,44 @@ git checkout &lt;existing-branch&gt; // switch current branch to another branch
 
 <p><br /></p>
 
+<h2 id="how-it-works">How it works</h2>
+
+<h3 id="scenario-1">Scenario 1:</h3>
+
+<p>For example, A and B are working together on a branch (e.g. master). A, B develop in their own local repository. Once A finishes his development, he want to publish his local commits to the central (remote, shared) repository. He can do this with following command:</p>
+
+<pre><code>git push upsteam master // Here we suppose upstream is the remote-shortname of the central repository
+</code></pre>
+
+<p>Until now, everything goes well. After A published to central repository, B want to publish his local commits as well. B will use the same command to try to push to upstream. However, B’s local history has diverged from the central repostiory. B will receive a refuse message. So B need to rebase his local working diretory by following repostiory.</p>
+
+<pre><code>git pull --rebase upstream master 
+</code></pre>
+
+<p>B may need to resolve conflicts during rebase. After B’s done synchronizing with the central repository, B is able to publish his changes by <em>git push upstream master</em>.</p>
+
+<h3 id="scenario-2">Scenario 2:</h3>
+
+<p>Only use master branch is a bad idea. Because it’s hard to manage the project while the project is bigger and more complex. For instance, lots of people working on different features on master branch. The code will definitly mess up. In this case, using feature branch is an easy way to encourage collaboration.</p>
+
+<p>For example, A is starting developing a new feature. A can request a new branch with following command in his local git to work on.</p>
+
+<pre><code>git checkout -b new_feature master // suppose A create a new branch named new_feature based on master
+</code></pre>
+
+<p>After a few commits, he finished the feature and push his feature branch up to the central (remote) repository.</p>
+
+<pre><code>git push -u upstream new_feature // Here we suppose upstream is the remote-shortname of the central repository
+</code></pre>
+
+<p>Then A is able to file a pull request. Team members will do the code review. Once team members accept the pull request, someone needs to merge the feature into the stable project (like master branch).</p>
+
+<pre><code>git checkout master
+git pull
+git pull upstream new_feature
+git push
+</code></pre>
+
 <h2 id="reference">Reference</h2>
 <p><a href="https://www.atlassian.com/git/tutorials">Git Tutorial of Atlassian</a><br />
 <a href="https://git-scm.com/">Git-Scm</a></p>
