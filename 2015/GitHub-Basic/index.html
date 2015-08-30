@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Hao - GitHub Basic</title>
+  <link rel="shortcut icon" href="/blog/assets/images/favicon.ico">
+  <link rel="stylesheet" href="/blog/assets/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="My Blog" href="/blog/rss.xml">
+  <link rel="stylesheet" href="/blog/assets/css/highlight.css">
+</head>
+<body>
+
+  <nav class="main-nav">
+    
+        <a href="/blog/"> <span class="arrow">←</span> Home </a>
+    
+
+    <a href="/blog/archive.html">Archive </a>
+
+    
+        
+            <a href="/blog/about">About </a>
+        
+    
+
+    <a class="cta" href="/blog/feed.xml">Subscribe</a>
+</nav>
+
+  
+
+  <section id="wrapper" class="">
+    <article class="post">
+    <header>
+        <h1>GitHub Basic</h1>
+        <h2 class="headline">August 30, 2015</h2>
+    </header>
+    <section id="post-body">
+        <h2 id="what-is-git-and-github">What is Git and GitHub?</h2>
+
+<p>Git is a version control tool. GitHub is a code sharing and collaboration platform. This post summaries some basic important Git commands and guides you how to manage project and code better.</p>
+
+<!--more-->
+
+<h2 id="saving-changes">Saving changes</h2>
+
+<p><img src="/blog/assets/images/2015/lifecycle.png" alt="Lifecycle of the status of files" /></p>
+
+<p><strong>git status</strong> checks the status of files</p>
+
+<pre><code>git status
+</code></pre>
+
+<p><strong>git add</strong> command proposes changes to staging area.</p>
+
+<pre><code>git add &lt;file&gt; // add a certain file
+</code></pre>
+
+<p>Edit <strong>.gitignore</strong> file to list all files you don’t want Git to automatically add or show you as being untraced.</p>
+
+<p><strong>git diff</strong> is to see what you’ve changed but not yet staged.</p>
+
+<pre><code>git diff --staged // to see what you've staged that will go into next commit.
+</code></pre>
+
+<p>Once you’ve already set up staging area, you can <strong>commit your changes</strong>. Any change that is unstaged won’t go into this commit.</p>
+
+<pre><code>git commit  // you're able to confirm the commit and write down the description
+git commit -m "Description" // confirm and write down the descriptino directly
+</code></pre>
+
+<p><strong>Removing</strong> files:</p>
+
+<pre><code>git rm &lt;file&gt; // remove file from it from tracked filed. It will remove file from working directory as well.
+git rm --cached &lt;file&gt; // Same as above but will not remove file from working directory.
+</code></pre>
+
+<p><strong>Moving</strong> (Renaming) files:</p>
+
+<pre><code>git mv &lt;old_file&gt; &lt;new_file&gt;
+</code></pre>
+
+<p><br /></p>
+
+<h2 id="undoing-changing">Undoing changing</h2>
+
+<p><strong>Recommit</strong> with adding new changes. For example, when you forget to add some files but you don’t want to make a new commit. You are able to use <em>git commit</em> with <em>amend</em> option.</p>
+
+<pre><code>git commit --amend  // try to commit again with adding new changes
+</code></pre>
+
+<p><strong>Ustaging</strong> a staged file. When you add a file into staging area by mistake, you want to ustage the file. You can use <em>git reset HEAD</em></p>
+
+<pre><code>git reset &lt;file&gt;   // Ustaging file from staged area.
+git reset // unstages all files without overwriting any changes.
+</code></pre>
+
+<p><strong>Unmodifing</strong> a file. When you don’t want to keep changes of a file. You want to revert it back as it looks like in latest commit. You can use following command. But be careful, once you use this command, any changes of the file you made after latest commit are gone.</p>
+
+<pre><code>git checkout -- &lt;file&gt; // Unmodifing the file.
+</code></pre>
+
+<p><strong>Viewing old commit</strong></p>
+
+<pre><code>git checkout &lt;commit&gt; &lt;file&gt; // update a single file in the working dierctory to match the specified commit
+git checkout &lt;commit&gt; // update all files in the working directory to match the specified commit.
+git checkout HEAD // check out back to the most recent version
+</code></pre>
+
+<p><strong>Reverting</strong> <em>git revert</em> undoes a commited snapchat. Instead of removing the commite from the history, it undos the changes introduced by specified commit and appends a new commit.</p>
+
+<pre><code>git revert &lt;commit&gt;  // Generate a new commit that undoes all of the changes introduced in &lt;commit&gt;, then apply it to the current branch.
+git revert HEAD      // revert the commit we just created
+</code></pre>
+
+<p><strong>Remove a commit</strong></p>
+
+<pre><code>git reset &lt;commit&gt; // Move the current branch tip backward to &lt;commit&gt;, reset the staging area to match, 
+                   // but leave the working directory alone. All changes made since &lt;commit&gt; will reside 
+                   // in the working directory, which lets you re-commit the project history using cleaner, 
+                   // more atomic snapshots.
+git reset --hard &lt;commit&gt; // Move the current branch tip backward to &lt;commit&gt; and reset both the staging 
+                          // area and the working directory to match.
+</code></pre>
+
+<p><strong><em>WARNING</em></strong>: never perform the reset operation if you’ve already pushed your commits to a shared repository.</p>
+
+<p><br /></p>
+
+<h2 id="working-with-remote">Working with remote</h2>
+
+<p><strong>git remote</strong> is to manager the remote</p>
+
+<pre><code>git remote -v // shows all of remote
+git remote add &lt;shortname&gt; &lt;url&gt; // add remote url as a shortname you can reference easily
+git remote rm &lt;shortname&gt; // remove
+git remote rename &lt;old-name&gt; &lt;new-name&gt; // rename
+</code></pre>
+
+<p><strong>git fetch</strong> is to pull down all of data from the remote. After you do this, you should have references to all the branches from that remote, which you can merge in or inspect at any time.</p>
+
+<pre><code>git fetch &lt;remote&gt; // Fetch all of the branches from the repository. This also downloads all of the required commits and files from the other repository.
+git fetch &lt;remote&gt; &lt;branch&gt; // Same as the above command, but only fetch the specified branch.
+</code></pre>
+
+<p><strong>git push</strong> once you finish the code or the files you want to share. You can use the command to push the project to remote.</p>
+
+<pre><code>git push &lt;remote-shortname&gt; &lt;branch-name&gt;
+git push &lt;remote-shortname&gt; --all // push all of your local branches. 
+</code></pre>
+
+<p><strong>git pull</strong></p>
+
+<pre><code>git pull &lt;remote&gt; // Fetch the specified remote’s copy of the current branch and immediately merge it into the local copy. It's the same as git fetch and then git merge
+git pull --rebase &lt;remote&gt; // Same as the above command, but instead of using git merge to integrate the remote branch with the local one, use git rebase.
+</code></pre>
+
+<p><br /></p>
+
+<h2 id="using-branches">Using branches</h2>
+
+<p>A branch represents an independent line of development. Any changes of a branch will not affect other branches. Because of this, you can develope diffrent features in the same time, but will not mess up the code at all.</p>
+
+<pre><code>git branch // List all of the brances in your repository.
+git branch &lt;branch&gt; // create a branch based on current branch
+git branch -d &lt;branch&gt; // delete the specified branch
+git checkout &lt;existing-branch&gt; // switch current branch to another branch
+</code></pre>
+
+<p><img src="/blog/assets/images/2015/branch.svg" alt="Branch Example" /></p>
+
+<p>For instance, the above image shows 3 in dependent branches. In each branch, you can do anything you want like edit, commit, etc, but will not affect any other branches.</p>
+
+<p><strong>git merge</strong> it lets you take the independent lines of development created by git branch and integrate them into a single branch.</p>
+
+<pre><code>git merge &lt;branch&gt; // Merge the specified branch into the current branch. Git will determine the merge algorithm automatically.
+</code></pre>
+
+<p>If the two brancehs you’re trying to merge both changed the same part of the same file, it stopes right before the merge commit so that you have to resolve the conflicts manually.</p>
+
+<p><br /></p>
+
+<h2 id="reference">Reference</h2>
+<p><a href="https://www.atlassian.com/git/tutorials">Git Tutorial of Atlassian</a><br />
+<a href="https://git-scm.com/">Git-Scm</a></p>
+
+
+    </section>
+</article>
+<footer id="post-meta" class="clearfix">
+    <a href="http://twitter.com/chenhaopku">
+        <img class="avatar" src="/blog/assets/images/avatar.png">
+        <div>
+            <span class="dark">Hao</span>
+            <span>Stay awesome</span>
+        </div>
+    </a>
+
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://yuigahame.com/2015/GitHub-Basic/ - GitHub Basic by @chenhaopku"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+    </section>
+</footer>
+
+<!-- Disqus comments -->
+
+
+<!-- Archive post list -->
+
+    <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+                <a href="/blog/2015/GitHub-Basic/">GitHub Basic<aside class="dates">Aug 30</aside></a>
+            </li>
+        
+            <li>
+                <a href="/blog/2015/Communication-Between-NodeJs-and-Python/">Communication Between NodeJs and Python<aside class="dates">Apr 07</aside></a>
+            </li>
+        
+            <li>
+                <a href="/blog/2015/IU---December-24/">IU-December 24<aside class="dates">Apr 07</aside></a>
+            </li>
+        
+            <li>
+                <a href="/blog/2015/EM-Algorithm/">EM Algorithm<aside class="dates">Mar 30</aside></a>
+            </li>
+        
+            <li>
+                <a href="/blog/2015/Hello-2015!/">Hello 2015!<aside class="dates">Jan 01</aside></a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/blog/assets/js/main.js"></script>
+  <script src="/blog/assets/js/highlight.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXXX-X', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
+
+
+

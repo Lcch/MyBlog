@@ -10,9 +10,9 @@
         <title>GitHub Basic</title>
         
         
-          <description>&lt;p&gt;This post summaries some basic important Git commands and guides you how to manage project and code better.&lt;/p&gt;
+          <description>&lt;h2 id=&quot;what-is-git-and-github&quot;&gt;What is Git and GitHub?&lt;/h2&gt;
 
-&lt;p&gt;Not finished yet.&lt;/p&gt;
+&lt;p&gt;Git is a version control tool. GitHub is a code sharing and collaboration platform. This post summaries some basic important Git commands and guides you how to manage project and code better.&lt;/p&gt;
 
 </description>
         
